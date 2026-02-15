@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="リコード法ナビ">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0f3d30">
+    <meta name="description" content="リコード法ナビゲーター - 認知症予防・改善の包括的ガイド">
+    <title>リコード法ナビゲーター - 認知症講座 最強アプリ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f4a;
+            --primary-light: #2d8a6e;
+            --primary-dark: #0f3d30;
+            --accent: #c9a227;
+            --accent-soft: #e8d9a0;
+            --bg-main: #f8f6f1;
+            --bg-card: #ffffff;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --shadow: 0 4px 20px rgba(26, 95, 74, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .app-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .app-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1rem;
+            background: var(--bg-card);
+            border-bottom: 1px solid #e8e4dc;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg-main);
+            color: var(--primary);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: var(--primary-dark);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .card p, .card li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* === Q&A 質問一覧画面 === */
+        .qa-home {
+            animation: fadeIn 0.3s ease;
+        }
+
+        .qa-welcome {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+            text-align: center;
+        }
+
+        .qa-welcome h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .qa-welcome p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .qa-search-area {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qa-search-input {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e8e4dc;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg-card);
+        }
+
+        .qa-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+        }
+
+        .qa-search-btn {
+            padding: 0.9rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .qa-search-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .quick-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-q {
+            padding: 0.9rem 1rem;
+            background: var(--bg-card);
+            border: 2px solid #e8e4dc;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .quick-q:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px rgba(26, 95, 74, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .quick-q:active {
+            transform: translateY(0);
+        }
+
+        /* === Q&A 回答画面 === */
+        .qa-answer-view {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .qa-answer-view.visible {
+            display: block;
+        }
+
+        .qa-answer-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .qa-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .qa-back-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qa-answer-question {
+            flex: 1;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .qa-answer-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .qa-answer-card strong {
+            color: var(--primary-dark);
+        }
+
+        .qa-answer-card hr {
+            border: none;
+            border-top: 1px solid #d4cfbf;
+            margin: 1rem 0;
+        }
+
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .protocol-item {
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid #e8e4dc;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .protocol-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .protocol-item .num {
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .protocol-item .title {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .protocol-detail {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .protocol-detail.visible {
+            display: block;
+        }
+
+        .back-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e8e4dc;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* テーブルのレスポンシブ対応 */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -0.5rem;
+            padding: 0 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 1rem; }
+            .app-header { padding: 1.2rem 1rem; }
+            .app-header h1 { font-size: 1.5rem; }
+            .app-header p { font-size: 0.85rem; }
+            .card { padding: 1.2rem 1rem; margin-bottom: 1rem; }
+            .card h2 { font-size: 1.1rem; }
+            .protocol-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.6rem;
+            }
+            .nav-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                gap: 0.4rem;
+                padding: 0.6rem 0.8rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .nav-tabs::-webkit-scrollbar { display: none; }
+            .nav-tab {
+                flex-shrink: 0;
+                padding: 0.5rem 1rem;
+                font-size: 0.88rem;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content { padding: 0.6rem; }
+            .app-header { padding: 1rem 0.8rem; }
+            .app-header h1 { font-size: 1.3rem; }
+            .app-header p { font-size: 0.8rem; }
+            .nav-tab {
+                padding: 0.45rem 0.8rem;
+                font-size: 0.82rem;
+            }
+            .quick-questions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            .quick-q {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .qa-answer-card {
+                padding: 1rem;
+                font-size: 0.93rem;
+                line-height: 1.75;
+            }
+            .qa-search-area {
+                flex-direction: column;
+            }
+            .qa-search-btn {
+                width: 100%;
+                min-height: 48px;
+            }
+            .qa-search-input {
+                font-size: 16px; /* iOS zoom防止 */
+                min-height: 48px;
+            }
+            .qa-answer-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .qa-welcome {
+                padding: 1rem;
+            }
+            .qa-welcome h2 { font-size: 1.05rem; }
+            .qa-welcome p { font-size: 0.88rem; }
+            .qa-back-btn {
+                min-height: 44px;
+                font-size: 0.9rem;
+            }
+            .card {
+                padding: 1rem 0.8rem;
+                margin-bottom: 0.8rem;
+                border-radius: 10px;
+            }
+            .card h2 { font-size: 1.05rem; margin-bottom: 0.8rem; }
+            .card p, .card li { font-size: 0.9rem; }
+            .protocol-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            .protocol-item {
+                padding: 0.8rem;
+                min-height: 60px;
+            }
+            .protocol-item .title { font-size: 0.88rem; }
+            .search-box {
+                font-size: 16px; /* iOS zoom防止 */
+                min-height: 48px;
+            }
+            .back-btn {
+                min-height: 44px;
+                padding: 0.6rem 1.2rem;
+            }
+            .lock-box {
+                padding: 2rem 1.5rem;
+                margin: 0.5rem;
+            }
+            .lock-input {
+                font-size: 16px; /* iOS zoom防止 */
+                min-height: 48px;
+            }
+            .lock-btn {
+                min-height: 48px;
+            }
+        }
+        /* === パスワードロック画面 === */
+        .lock-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 1.5rem;
+        }
+
+        .lock-overlay.hidden {
+            display: none;
+        }
+
+        .lock-box {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .lock-box .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lock-box h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .lock-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lock-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #e8e4dc;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .lock-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.15);
+        }
+
+        .lock-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lock-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .lock-error {
+            color: #c0392b;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            min-height: 1.3em;
+        }
+
+        .app-wrapper {
+            display: none;
+        }
+
+        .app-wrapper.unlocked {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- パスワードロック画面 -->
+    <div class="lock-overlay" id="lockOverlay">
+        <div class="lock-box">
+            <div class="lock-icon">&#128274;</div>
+            <h2>リコード法ナビゲーター</h2>
+            <p>このアプリは認証が必要です。<br>パスワードを入力してください。</p>
+            <input type="password" class="lock-input" id="lockInput" placeholder="パスワード" autocomplete="off">
+            <button class="lock-btn" id="lockBtn">ログイン</button>
+            <div class="lock-error" id="lockError"></div>
+        </div>
+    </div>
+
+    <!-- アプリ本体（認証後に表示） -->
+    <div class="app-wrapper" id="appWrapper">
+    <header class="app-header">
+        <h1>リコード法ナビゲーター</h1>
+        <p>認知症予防・改善の包括的ガイド — ReCODE Protocol</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="nav-tab active" data-panel="qa">質問する</button>
+        <button class="nav-tab" data-panel="overview">概要</button>
+        <button class="nav-tab" data-panel="protocols">30のプロトコル</button>
+        <button class="nav-tab" data-panel="ketoflex">ケトフレックス12/3</button>
+        <button class="nav-tab" data-panel="biomarkers">検査値・目標</button>
+    </nav>
+
+    <main class="main-content">
+        <!-- Q&A Panel -->
+        <section id="panel-qa" class="panel active">
+            <!-- 質問一覧画面 -->
+            <div class="qa-home" id="qaHome">
+                <div class="qa-welcome">
+                    <h2>リコード法について質問する</h2>
+                    <p>下のボタンをタップするか、自由に入力して検索できます</p>
+                </div>
+                <div class="qa-search-area">
+                    <input type="text" class="qa-search-input" id="qaSearchInput" placeholder="知りたいことを入力..." autocomplete="off">
+                    <button class="qa-search-btn" id="qaSearchBtn">検索</button>
+                </div>
+                <div class="quick-questions" id="quickQuestions">
+                    <span class="quick-q">リコード法とは？</span>
+                    <span class="quick-q">6つのサブタイプ</span>
+                    <span class="quick-q">ケトフレックス12/3</span>
+                    <span class="quick-q">ホモシステインを下げる</span>
+                    <span class="quick-q">睡眠を改善したい</span>
+                    <span class="quick-q">運動プログラム</span>
+                    <span class="quick-q">サプリメント一覧</span>
+                    <span class="quick-q">腸内環境の改善</span>
+                    <span class="quick-q">ミトコンドリア</span>
+                    <span class="quick-q">重金属デトックス</span>
+                    <span class="quick-q">血糖値の改善</span>
+                    <span class="quick-q">アミロイドβ</span>
+                    <span class="quick-q">ビタミンD</span>
+                    <span class="quick-q">カビ毒・CIRS</span>
+                    <span class="quick-q">脳トレーニング</span>
+                    <span class="quick-q">ホルモンバランス</span>
+                </div>
+            </div>
+            <!-- 回答全画面表示 -->
+            <div class="qa-answer-view" id="qaAnswerView">
+                <div class="qa-answer-header">
+                    <button class="qa-back-btn" id="qaBackBtn">← 質問一覧へ</button>
+                    <span class="qa-answer-question" id="qaAnswerQuestion"></span>
+                </div>
+                <div class="qa-answer-card" id="qaAnswerContent"></div>
+            </div>
+        </section>
+
+        <!-- Overview Panel -->
+        <section id="panel-overview" class="panel">
+            <div class="card">
+                <h2>リコード法とは</h2>
+                <p>ReCODE Protocol（リコード法）は、アメリカの医学博士デール・ブレデセン氏によって開発された、アルツハイマー型認知症の予防・治療プログラムです。従来「不治の病」とされてきたアルツハイマー病に対し、早期であれば認知機能の低下を回復可能にする画期的なアプローチです。</p>
+            </div>
+            <div class="card">
+                <h2>治療の3ステップ</h2>
+                <ol style="margin-left: 1.5rem;">
+                    <li><strong>コグノスコピー（認知機能検査）</strong>：36以上の潜在因子を検査して原因を特定</li>
+                    <li><strong>個別化した改善計画</strong>：検査結果に基づき各人に適切な治療法を作成</li>
+                    <li><strong>継続的な最適化</strong>：臨床検査値に基づいて治療を調整</li>
+                </ol>
+            </div>
+            <div class="card">
+                <h2>6つのアルツハイマー病サブタイプ</h2>
+                <p>リコード法では、アルツハイマー病を6つのサブタイプに分類し、それぞれに対応した治療を行います：1型（炎症性）、1.5型（糖毒性）、2型（萎縮性）、3型（毒性）、4型（血管性）、5型（外傷性）。</p>
+            </div>
+        </section>
+
+        <!-- 30 Protocols Panel -->
+        <section id="panel-protocols" class="panel">
+            <input type="text" class="search-box" id="protocolSearch" placeholder="プロトコルを検索...">
+            <div id="protocolList">
+                <div class="protocol-grid" id="protocolGrid"></div>
+                <div class="protocol-detail" id="protocolDetail"></div>
+            </div>
+        </section>
+
+        <!-- Ketoflex Panel -->
+        <section id="panel-ketoflex" class="panel">
+            <div class="card">
+                <h2>ケトフレックス12/3とは</h2>
+                <p>リコード法の食事プログラム。3つの要素で構成されています：</p>
+                <ul>
+                    <li><strong>ケト</strong>：ケトーシス（脂肪代謝）を促進し脳にエネルギーを供給</li>
+                    <li><strong>フレックス</strong>：代謝の柔軟性、フレキシタリアン（野菜中心だが適度に動物性食品も）</li>
+                    <li><strong>12/3</strong>：1日12～16時間の断食 + 就寝3時間前の絶食</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>断食の目安</h2>
+                <ul>
+                    <li>ApoE4遺伝子陰性：12～14時間断食</li>
+                    <li>ApoE4遺伝子陽性：14～16時間断食</li>
+                    <li>例：夕食8時→翌朝8時まで食事なし（水・お茶はOK）</li>
+                    <li>24時間超の過剰断食は避ける</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>避ける食品</h2>
+                <p>砂糖、単純炭水化物、精製穀物、グルテン、加工食品、コンベンショナルな乳製品</p>
+            </div>
+            <div class="card">
+                <h2>目標ケトン濃度</h2>
+                <p>1.0～4.0 mmol/L（できれば1.5以上）。血清ケトン値を測定することが推奨されます。</p>
+            </div>
+        </section>
+
+        <!-- Biomarkers Panel -->
+        <section id="panel-biomarkers" class="panel">
+            <div class="card">
+                <h2>主要検査値の目標</h2>
+                <div class="table-wrapper">
+                <table style="width:100%; border-collapse: collapse; min-width: 320px;">
+                    <tr style="background: #f5f5f5;"><th style="padding:0.5rem; text-align:left;">項目</th><th style="padding:0.5rem; text-align:left;">目標値</th></tr>
+                    <tr><td style="padding:0.5rem;">ホモシステイン</td><td>6 nmol/mL 以下</td></tr>
+                    <tr><td style="padding:0.5rem;">空腹時インスリン</td><td>5 未満（4.9～5.2理想）</td></tr>
+                    <tr><td style="padding:0.5rem;">空腹時血糖</td><td>90以下（79～86理想）</td></tr>
+                    <tr><td style="padding:0.5rem;">HbA1c</td><td>4.5～5.2</td></tr>
+                    <tr><td style="padding:0.5rem;">ビタミンB12</td><td>500以上</td></tr>
+                    <tr><td style="padding:0.5rem;">A/G比（アルブミン/グロブリン）</td><td>1.8以上</td></tr>
+                    <tr><td style="padding:0.5rem;">CRP</td><td>1以下</td></tr>
+                    <tr><td style="padding:0.5rem;">無呼吸低呼吸指数（AHI）</td><td>5以下（理想は0）</td></tr>
+                    <tr><td style="padding:0.5rem;">ケトン体</td><td>1.0～4.0 mmol/L</td></tr>
+                </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function() {
+            'use strict';
+
+            var PROTOCOLS = [
+                { id: 1, cat: '食事', title: '食生活を整える', content: '【目的】単純炭水化物を最小限にし、脳の炎症を抑制、脳や腸へ有害な影響を与える食品を避け、脳（特に海馬）のインスリン抵抗性を改善する。\n\n【ケトフレックス12/3の基本三原則】\n・半日断食（12～16時間）＋就寝前の絶食（3～4時間）\n・植物性食品を中心とした食事（野菜は非でんぷん質を中心に）\n・良質な脂質（オリーブオイル、アボカド、ナッツ）を十分に摂る\n\n【避けるべき食品】砂糖・人工甘味料、精製穀物（白米・白パン）、グルテン含有食品（小麦・大麦・ライ麦）、加工食品、コンベンショナルな乳製品、トランス脂肪酸、GMO食品\n\n【積極的に摂る食品】緑黄色野菜、ブロッコリー・カリフラワー等のアブラナ科野菜、ブルーベリー等のベリー類、天然魚（特にサーモン・イワシ・サバ）、エクストラバージンオリーブオイル、アボカド、ナッツ類（くるみ・アーモンド）、きのこ類' },
+                { id: 2, cat: '食事', title: 'オートファジー・ケトン体', content: '【目的】オートファジーとケトンを高めることにより、脳細胞の修復能力を高める。\n\n【断食時間の目安】\n・ApoE4遺伝子陰性 → 12～14時間断食\n・ApoE4遺伝子陽性 → 14～16時間断食\n・例：夕食を20時に済ませたら、翌日の8時まで食事を一切摂らない（水やお茶はOK、ジュース等の炭水化物源はNG）\n・24時間を超える過剰な断食は避ける\n\n【目標ケトン濃度】1.0～4.0 mmol/L（できれば1.5以上）。患者によっては1.5～5の高い数値でより良い効果を示す場合がある。ケトンの概日リズムやピーク値は人によって異なる。\n\n【就寝3時間前は食べない】カロリーを消費する飲み物も禁止。\n\n【測定】血清ケトン値を計測すること。呼気テスト・尿検査は信頼性が低い。\n\n【注意事項】\n・マグネシウムとカルシウム、電解質の補給が重要\n・痩せている人（BMI18以下）では炭水化物補給日を組み込む\n・ケトフルー（脱水の副作用）に注意し水分・ミネラル補給を\n・野菜をしっかり食べること（便秘予防）\n・2～3日に一度、炭水化物補給日を設ける' },
+                { id: 3, cat: '食事', title: '中鎖脂肪酸（MCTオイル）', content: '【目的】MCTオイル等の摂取でケトン値を高め、枯渇している脳へエネルギーを供給し、神経保護効果を得る。\n\n【積極的に摂取する場合（3～10g×2～3回/日）】\n・sd-LDLが適正値の場合\n・インスリン抵抗性に問題がある/糖尿病予備群\n・非ApoE4遺伝子保有者\n・MCTオイル摂取開始1ヶ月以内\n\n【控えめに摂取する場合（0～3g×2回/日）】\n・sd-LDLがリコード法の適正値を外れている\n・大量摂取で下痢をおこす\n・LDLコレステロール、中性脂肪が顕著に高い\n・ApoE4遺伝子保有者\n・MCTなしでもケトン0.5～4を達成できている\n\n【LDL-pで判断】4週間試みて、インスリン感受性、LDL-p（LDL粒子数）が1000以下に回復したなら、MCTオイルの量を減らしオリーブオイル・一価不飽和脂肪酸を増やす。\n\n【検査項目】血清ケトン濃度、酸化LDL、LDL-p、sd-LDL\n\n【注意】ケトンダイエットに慣れていない人はケトンソルトから始めると良い。飽和脂肪酸を含む食事を減らす。高sd-LDLにはNIASPAN 100mg～最大2000mg。' },
+                { id: 4, cat: '食事', title: '腸内環境の改善', content: '【目的】\n・腸内細菌叢が産生する脳に有益な物質（セロトニン、BDNF、短鎖脂肪酸等）を増やす\n・脳に有害な物質（D-乳酸、アンモニア、炎症性サイトカイン等）を減らす\n・迷走神経を介して脳の炎症を鎮める\n・腸管バリアと血液脳関門のバリア機能を高める\n\n【リーキーガットの原因】ストレス、NSAIDs・ステロイド、抗生物質、アルコール、GMO食品、殺虫剤、除草剤（グリホサート等）、人工甘味料・保存料・着色料、砂糖、グルテン食品\n\n【ボーンブロス】骨付き肉を長時間煮込み、酢を加えてミネラル抽出。コラーゲン・グリシン・プロリン等が腸粘膜修復を助ける。\n\n【リコード法5つのプロバイオティクス】\n1. ビフィドバクテリウム・ロンガム\n2. ビフィドバクテリウム・ラクティス\n3. ラクトバチラス・ブレビス\n4. ラクトバチルス・アシドフィルス\n5. ラクトバチルス・プランタルム\n※プロバイオティクス摂取はリーキーガットが修復してから\n\n【検査】マンニトール・ラクツローステスト等' },
+                { id: 5, cat: 'ライフスタイル', title: 'ストレスを減らす', content: '【目的】炎症ホルモンであるコルチゾール、CRF（副腎皮質刺激ホルモン放出ホルモン）を低下させ、ストレスを制御するHPA軸の機能を回復させる。\n\n【ストレス緩和方法】\n・ヨガ、太極拳、音楽療法\n・マインドフルネス瞑想（RevitaMind等のプログラム）\n・HeartMath（心拍変動トレーニング）\n・neuroAgility\n・個人の好みに合わせたストレス解放方法を見つける\n\n【社会的交流】散歩読書クラブ（ウォーキングブッククラブ）は「脳トレ」「身体運動」「社会交流」「モチベーション」の4つの認知機能改善要素を同時に得られる優れた方法。\n\n【デフォルトモードネットワーク（DMN）】瞑想はDMNを変調させ、脳の異なる領域の機能的接続を改善する効果がある。' },
+                { id: 6, cat: 'ライフスタイル', title: '睡眠を整える', content: '【目的】\n・睡眠中の脳の修復作業や記憶統合を最大化\n・グリンパティック系による老廃物除去の活性化\n・深い睡眠（徐波睡眠）中のアミロイドβ排出を最大化\n\n【基本ルール：1日8時間の睡眠確保】\n・アラームなしで起きる\n・睡眠前に不安や考え事を取り除く訓練\n・水分補給を心がけるが寝る前に大量に飲まない\n・ボリュームたっぷりの夜食は避ける\n・TVをベッドルームに置かない\n・ブルーライトを夜間避ける（PC使用時はフィルター使用）\n・寝る数時間前に運動しない（アドレナリンが睡眠を妨害）\n・できれば真夜中までに寝床につく\n・部屋を可能な限り暗くする（アイマスク活用）\n・環境音を静かにし、電磁波を出す電気器具の電源を切る\n\n【光線療法】朝一番に光を最低数十分浴びる。太陽の強い光を浴びにくい場合は白色LEDライトの光線療法が有効。\n\n【メラトニン】就寝60～90分前に摂取。生理学的用量0.1～0.3mg、低用量0.5～1mg、中用量3～5mg、高用量10mg。神経保護効果もある。\n\n【トリプトファン】夜間にネガティブなことを考えて目が覚める場合、トリプトファン500mgを就寝1時間前に。改善しない場合や悪夢が出る場合は100～200mgの5-HTPに切替。\n\n【プロゲステロン】低プロゲステロンで睡眠の質が低下する場合（特に女性、男性でも）。ヨガ、瞑想、補充療法が有効。\n\n【CBDオイル】痛みがあり眠れない人に有効な場合がある。\n\n【その他】バレリアン、ホーリーバジル、パッションフラワーの組み合わせ。甲状腺機能低下で睡眠時間が10時間以上なら甲状腺をチェック。\n\n【睡眠記録デバイス】Fitbit、OURA Ring、夜間記録可能なパルスオキシメーター等で睡眠の質をチェック。' },
+                { id: 7, cat: 'ライフスタイル', title: '夜間の酸素呼吸を確保', content: '【目的】睡眠時の無呼吸を防ぎ、脳の酸素欠乏を防いで脳細胞の死滅を防ぐ。IAD（吸入性アルツハイマー病）の予防。\n\n【睡眠時無呼吸症候群（SAS）検査】\n・STOP-Bangテスト（問診）：SASのスクリーニング\n・終夜睡眠ポリグラフ検査（推奨）：内科・呼吸器内科・睡眠外来で受診、保険適用で約1万円\n・パルスオキシメーター（簡易検査）：夜間連続自動記録が可能なタイプを使用\n\n【目標値】無呼吸低呼吸指数（AHI）5以下、理想はAHI 0。パルスオキシメーターでは90%以下に達した回数で判定。\n\n【30分を超える長い昼寝は睡眠時無呼吸のサインかもしれない】\n\n【治療】CPAP（持続陽圧呼吸療法）、EWOT（運動時酸素療法）' },
+                { id: 8, cat: 'ライフスタイル', title: '運動・エクササイズ', content: '【目的】\n・神経栄養因子BDNF、IGF-1のアップレギュレート、海馬機能の回復\n・脳のネットワーク（DMN）可塑性を刺激\n・グルコース代謝改善、インスリン抵抗性低下\n\n【日常生活運動】座りっぱなし生活の回避\n\n【有酸素運動】週最低5～6回、30～60分。週の運動時間は最低150分。心拍計は必須。\n\n【筋力トレーニング】強度の高い筋トレを週1～2回。\n\n【HIIT（高強度インターバルトレーニング）】VO2peak向上に最も効率的。心疾患のケアにも有効。\n\n【コグニサイズ】運動＋脳トレの組み合わせ。散歩読書クラブ（ウォーキングブッククラブ）は「脳トレ」「身体運動」「社会交流」「モチベーション」の4要素を同時に得られる。\n\n【環境エンリッチメント】遊びがもたらす12の認知機能増強作用。感覚的・社会的・運動刺激が重要。\n\n【4つのフェーズ】初期→基礎体力→持久力→パフォーマンスの段階的プログラムが推奨される。\n\n【5つの心拍数トレーニングゾーン】心拍数に基づいたゾーン管理で最大持久力を得る。' },
+                { id: 9, cat: 'ライフスタイル', title: 'ミトコンドリア機能の最適化', content: '【目的】神経細胞のエネルギーを生産するミトコンドリア機能の改善\n\n【ユビキノール（還元型CoQ10）】1日50～200mg×2～3回、毎食後（脂質性の食事後が理想）。パーキンソニズム、心不全では高用量が効果的。\n\n【PQQ（ピロロキノリンキノン）】1日10～20mg×1～2錠、朝食後または活動前。ミトコンドリア機能賦活、海馬神経細胞回復。運動不足の患者に特に効果的。\n\n【NAD+関連】\n・レスベラトロール150～500mg\n・NMN 250mg×1～2回\n・ニコチンアミドリボシド200～300mg/日\n\n【亜鉛】血清亜鉛80μg以下 or 銅:亜鉛比1:1.3より亜鉛低い場合→ピコリン酸亜鉛25～50mg/日（キレートタイプ推奨）。空腹時が吸収良いが胃腸弱い人は食後に。\n\n【ビタミンB1】1.5型に重要。糖質をエネルギーに変える補酵素。アルコール大量摂取者は枯渇リスク。\n\n【αリポ酸】100mg～。ミトコンドリアのエネルギー代謝に重要。\n\n【NAC（N-アセチルシステイン）】1日500mg、空腹時。最強の抗酸化物質と言われるグルタチオンの前駆体。\n\n【セレニウム】目標110～150ng/ml、1日100～400mcg。ブラジルナッツ1日数粒（過剰症に注意）。\n\n【アセチル-L-カルニチン】1日500mg～。ミトコンドリアの脂肪燃焼を助ける。ビーガンは不足傾向。\n\n【ビタミンC】1日500mg～4g。\n\n【レスベラトロール】ApoE4保有者200mg、非保有者100mg。\n\n【クレアチン】200～5000mg/日。' },
+                { id: 10, cat: '検査値', title: 'ホモシステイン濃度を下げる', content: '【目的】脳へ様々なダメージを与えるホモシステインを低下させ、脳細胞と脳血管を守る。ホモシステインが6より高いと海馬の萎縮が速くなる。\n\n【目標値】6 nmol/mL以下（一般的な基準値3.7～13.5 nmol/mL）\n\n【ステップ1：ビタミンB群（活性型）】\n・メチル葉酸（MTHF）0.8mg～最高5mg\n・メチルコバラミン＋アデノシルコバラミン合計1mg\n・P-5-P（活性型ビタミンB6）20～50mg\n※市販のビタミンBサプリは活性型でないものがほとんどのため注意\n\n【ステップ2：TMG追加】活性型B群を3ヶ月摂取後、ホモシステインが6以下にならない場合→TMG（トリメチルグリシン）500mgを追加\n\n【ステップ3：メチオニン制限】TMGを3ヶ月摂取後まだ高い場合→メチオニンを含む食品（ナッツ、牛肉、チーズ、豚肉、魚、大豆、卵等）の摂取制限\n\n【MTHFR遺伝子検査】メチル化能力に個人差があるため、遺伝子検査を検討\n\n【検査項目】血清葉酸濃度10～25、MTHFR遺伝子（クリニックまたは民間検査キット）' },
+                { id: 11, cat: '検査値', title: '血清ビタミンB12', content: '【目的】ビタミンB12の欠乏は、神経組織の膜に異常な脂肪酸が蓄積し認知機能障害が起こる可能性がある。\n\n【目標値】血清ビタミンB12 500以上（一般基準200～350）、上限1500まで。メチレーション回路に適応している場合は1500を多少超えてもOK。\n\n【サプリメント】メチルコバラミン1～5mg/日。アデノシルコバラミンを加えるとなお良い。B12は必ず葉酸との併用補給を行い、片方だけ高い状況を避ける。\n\n【精密検査】血清ビタミンB12では一部の欠乏しか診断できない。より精度の高い診断は血中または尿中のメチルマロン酸を判定（70歳以下）。メチルマロン酸は変動が大きいためB12と同時に行う。\n\n【重要】水銀の曝露・過剰蓄積がないこと。水銀蓄積がある場合は水銀キレートを先に行う。' },
+                { id: 12, cat: '検査値', title: '炎症・A/G比の改善', content: '【目的】アルブミンは抗酸化物質として脳へ作用し、アミロイドβや毒素を除去する。炎症反応の指標でもある。\n\n【検査目標】A/G比（アルブミン/グロブリン比）1.8以上、CRP 1以下\n\n【クルクミン】キレート加工されたもの1000mg/日、空腹時または脂質を含む食事の後。通常のウコンやカレーは吸収力が低く治療レベルに達しない。ロングビーダまたはセラクルミン推奨。\n\n【EPA・DHA】DHA 1g/日、EPA 0.5～1g/日。保管は冷蔵庫、光が当たらない場所。\n\n【SPMアクティブ】hs-CRP（高感度CRP）が1.0mg/L以上の場合→Specialized pro-resolving lipid mediatorを1ヶ月間摂取。EPA・DHA由来の抗炎症成分で、市販の抗炎症剤より自然かつ強力。\n\n【衛生環境を整える】終末糖化産物受容体（RAGE）の活動を抑える。免疫反応を呼び起こす不衛生な環境を避ける。RAGEはNF-κBにより活性化される。\n\n【NF-κB阻害因子】クルクミン、レスベラトロール、オメガ3等37以上の因子がNF-κBを阻害する。' },
+                { id: 13, cat: '検査値', title: '血糖値とHbA1cの改善', content: '【目的】食事改善で糖質摂取を減らし、高血糖による脳のダメージを低減。運動やサプリで脳の糖質エネルギー利用能力を回復。\n\n【目標検査値】\n・空腹時インスリン：5未満（4.9～5.2が理想）\n・空腹時血糖：90以下（79～86理想、92～96まずまず）\n・HbA1c：4.5～5.2\n※空腹時血糖は低すぎても認知機能低下リスク。70～72mg/dl以下にならないよう注意。\n※病院の糖尿病検査では「許容範囲」でもリコード法では目標に届いていないことが多い。\n\n【計測器具】フリースタイルリブレ推奨（針を使わず連続測定可能）\n\n【改善方法】\n1. 食事管理（ケトフレックス12/3）\n2. オートファジー・ケトン体活性\n3. 運動\n\n【ベルベリン】1日300～500mg×3回、分割投与で徐々に増やす。中国・アーユルヴェーダ医学で3000年以上使用。抗菌・抗寄生虫・下痢緩和・血糖降下作用。\n\n【注意】脂質補充の不足した糖質制限や糖尿病薬との併用による低血糖に注意。' },
+                { id: 14, cat: '検査値', title: 'ホルモンバランスを整える', content: '【目的】認知機能に関与する各種ホルモンを最適化する。\n\n【甲状腺ホルモン】TSH、Free T3、Free T4、リバースT3を検査。甲状腺機能低下は認知機能低下と関連。\n\n【性ホルモン】\n・エストラジオール（女性）：更年期の急激な低下は認知リスク\n・テストステロン（男性・女性）：低テストステロンは認知機能低下と関連\n・プロゲステロン：神経保護作用あり、睡眠の質にも影響\n・DHEA-S：副腎機能の指標\n\n【コルチゾール】朝のコルチゾールが適切か、夜間の高コルチゾールが睡眠を妨げていないか。慢性ストレスによるHPA軸の機能不全をチェック。\n\n【プレグネノロン】ホルモンの「母」と呼ばれる。すべてのステロイドホルモンの前駆体。\n\n【インスリン】空腹時インスリン5未満が目標。インスリン抵抗性の改善が重要。\n\n※ホルモン補充療法は必ず医師の指導のもとで行う。バイオアイデンティカルホルモンが推奨される。' },
+                { id: 15, cat: '検査値', title: '亜鉛と銅の比率調整', content: '【目的】銅と亜鉛のバランスを是正する。アルツハイマー病患者の多くは血清亜鉛が低く銅が高い。\n\n【正常比率】亜鉛:銅 = 1:1 程度が理想\n\n【検査基準】血清亜鉛80μg以下 or 銅:亜鉛比1:1.3より亜鉛が低い場合 → 亜鉛補給\n\n【サプリメント】ピコリン酸亜鉛 25～50mg/日。亜鉛は吸収力が悪いためキレートタイプ推奨。空腹時が吸収良いが、胃腸が弱い人は食後に。それでも胃腸が荒れる場合はカルノシン酸亜鉛を選択。\n\n【注意】世界人口の4人に1人が亜鉛欠乏状態と推定。特に高齢者の亜鉛不足は深刻でアルツハイマー発症につながる。\n\n【銅の過剰】遊離銅が多い場合は亜鉛補給に加え、銅含有食品（レバー、チョコレート、貝類等）の制限を検討。' },
+                { id: 16, cat: '検査値', title: '血清ビタミンD値を増やす', content: '【目的】ビタミンDは脳の免疫調節、神経保護、アミロイドβクリアランスに関与。\n\n【目標値】50～80 ng/mL\n\n【方法】\n・日光浴：腕や足に15～30分/日\n・ビタミンD3サプリメント：2000～5000 IU/日（検査値に基づき調整）\n・ビタミンK2（MK-7）と併用推奨（カルシウム代謝の最適化）\n\n【検査】25-ヒドロキシビタミンD（25(OH)D）を定期的に測定\n\n【重要性】ビタミンD受容体は海馬を含む脳全体に存在。低ビタミンDは認知症リスク増加と関連。日本人の多くがビタミンD不足。\n\n【注意】脂溶性ビタミンのため過剰症にも注意。100 ng/mL以上は避ける。' },
+                { id: 17, cat: '検査値', title: '抗酸化バランスの調整', content: '【目的】酸化ストレスを軽減し、脳の細胞膜やDNAを保護する。\n\n【主要抗酸化物質】\n・ビタミンC：500mg～4g/日、水溶性抗酸化物質\n・ビタミンE（混合トコフェロール）：400～800 IU/日\n・セレン：100～400mcg/日、目標110～150ng/ml\n・グルタチオン：NACで前駆体を補給（500mg/日）\n・αリポ酸：100mg～/日、抗酸化ネットワークの中心\n・CoQ10（ユビキノール）：50～200mg×2～3回/日\n\n【食品からの摂取】\n・ベリー類（ブルーベリー、ストロベリー）\n・緑茶（EGCG）\n・ダークチョコレート（カカオ70%以上）\n・ブラジルナッツ（セレン）\n・カラフルな野菜・果物\n\n【酸化ストレスの原因】炎症、重金属、感染症、ストレス、運動不足、睡眠不足、加工食品' },
+                { id: 18, cat: '脳', title: '脳トレーニング', content: '【目的】神経可塑性を刺激し、認知予備能を高める。\n\n【推奨される脳トレーニング】\n・BrainHQ（ブレインHQ）：科学的に検証されたオンライン脳トレーニング\n・新しい言語の学習\n・楽器の演奏\n・パズル・クロスワード\n・読書（特に散歩読書クラブ形式）\n・社会的交流を伴う活動\n・新しいスキルの習得（料理、手芸等）\n\n【デュアルタスク訓練】コグニサイズ（運動しながら脳トレ）が効果的。歩きながら計算、しりとりなど。\n\n【環境エンリッチメント】「遊び」がもたらす12の認知機能増強作用。感覚的刺激、社会的刺激、運動刺激の組み合わせが重要。\n\n【ポイント】\n・受動的な活動（テレビ視聴等）より能動的な活動\n・難易度が適度に高いチャレンジングな活動\n・社会的交流を伴う活動が特に効果的\n・新規性（新しいことに挑戦）が重要' },
+                { id: 19, cat: '脳', title: 'アミロイドβを減らす', content: '【目的】アミロイドβの蓄積を防ぎ、排出を促進する。\n\n【アミロイドβが増える原因】炎症、栄養不足、毒性物質への曝露、感染症、インスリン抵抗性、ホルモン不足\n\n【リコード法のアプローチ】従来の「アミロイドβを除去する」薬と異なり、アミロイドβが蓄積する根本原因に対処する。\n\n【アミロイドβ排出を促進する方法】\n・質の良い睡眠（特に徐波睡眠）：グリンパティック系が活性化し老廃物を排出\n・運動：アミロイドβの分解酵素を増加\n・オートファジー：断食による細胞内のクリーンアップ\n・炎症の軽減：NF-κB阻害\n・クルクミン：アミロイドβの凝集を阻害\n・DHA：アミロイドβの除去を促進\n\n【重要な概念】アミロイドβは脳の「防御反応」の一部であり、その原因（炎症、感染、毒素等）を取り除くことが根本的な解決策。' },
+                { id: 20, cat: '脳', title: '認知機能を高める', content: '【目的】総合的なアプローチで認知機能を維持・改善する。\n\n【多因子アプローチ】リコード法の核心は、単一の治療ではなく、36以上の因子を同時に最適化すること。\n\n【認知機能に影響する主要因子】\n・栄養状態（ケトフレックス12/3）\n・睡眠の質と量\n・運動（有酸素＋筋トレ＋HIIT）\n・ストレス管理\n・社会的交流\n・脳トレーニング\n・炎症の制御\n・ホルモンバランス\n・腸内環境\n・毒素の排除\n\n【MoCA（モントリオール認知評価）】認知機能のスクリーニングテスト。26点以上が正常。定期的な測定で変化を追跡。\n\n【CNS Vital Signs】より詳細なコンピュータ認知機能テスト。記憶、処理速度、注意力等を客観的に評価。' },
+                { id: 21, cat: '脳', title: '集中力・注意力を高める', content: '【目的】前頭前皮質の機能を最適化し、注意力と集中力を改善する。\n\n【方法】\n・マインドフルネス瞑想：前頭前皮質の灰白質を増加させる\n・十分な睡眠（8時間）：注意力の基盤\n・オメガ3脂肪酸（DHA）：神経細胞膜の構成成分\n・適切な血糖管理：血糖の急激な変動を避ける\n・定期的な運動：脳血流を改善\n・カフェイン：適度な量で注意力向上（過剰摂取に注意）\n・ホスファチジルセリン：100～300mg/日\n・バコパ（バコパモニエリ）：伝統的なアーユルヴェーダ植物\n\n【避けるべきもの】\n・マルチタスク（脳に過負荷）\n・デジタルデバイスの過度使用\n・血糖値の乱高下\n・睡眠不足\n・慢性ストレス' },
+                { id: 22, cat: '脳', title: '神経成長因子NGFを増加', content: '【目的】神経成長因子（NGF）および脳由来神経栄養因子（BDNF）を増加させ、神経細胞の生存と成長を促進する。\n\n【運動】BDNFを増加させる最も強力な方法。有酸素運動とHIITが特に効果的。海馬のBDNF発現を直接アップレギュレートする。\n\n【PQQ】10～20mg/日。ミトコンドリア新生を促進し、海馬の神経成長因子を増加。\n\n【レスベラトロール】SIRT1を活性化し、BDNFの発現を促進。\n\n【その他の方法】\n・間欠的断食：BDNFを増加\n・日光浴：ビタミンDがNGFの産生を促進\n・社会的交流：脳の神経栄養因子を増加\n・新しい学習：神経可塑性を刺激\n・ライオンズメイン（ヤマブシタケ）：NGFの産生を促進する天然物質、500mg～3g/日\n・オメガ3脂肪酸：BDNFのシグナル伝達を改善\n\n【IGF-1（インスリン様成長因子1）】運動で増加。神経細胞の生存と成長に重要。' },
+                { id: 23, cat: '脳', title: '神経シナプス材料を供与', content: '【目的】シナプスの構造と機能を維持・改善するための材料を提供する。\n\n【DHA（ドコサヘキサエン酸）】神経細胞膜の主要構成成分。1g/日以上。天然魚や高品質フィッシュオイルから。\n\n【ホスファチジルセリン】100～300mg/日。細胞膜のリン脂質。記憶力と認知機能の改善に寄与。\n\n【ホスファチジルコリン】アセチルコリン（記憶に関わる神経伝達物質）の前駆体。卵黄、大豆レシチンに含有。シチコリン（CDP-コリン）250～500mg/日も有効。\n\n【アセチル-L-カルニチン】500mg～/日。ミトコンドリア機能を支援し、シナプスのエネルギー供給を改善。\n\n【タンパク質】良質なタンパク質（天然魚、放牧卵、グラスフェッドミート）。アミノ酸はシナプス伝達物質の原料。\n\n【マグネシウム（スレオニン酸マグネシウム）】脳のシナプス密度を増加。マグネシウムスレオネートが脳への移行性が最も高い。144mg/日。' },
+                { id: 24, cat: '脳', title: 'Sirt1遺伝子の活性', content: '【目的】サーチュイン（SIRT1）を活性化し、細胞の修復・長寿遺伝子の発現を促進する。\n\n【サーチュインとは】NAD+依存性の脱アセチル化酵素で、DNA修復、炎症抑制、ミトコンドリア機能、代謝調節に関与。\n\n【活性化方法】\n・カロリー制限/間欠的断食：SIRT1の最も確実な活性化因子\n・レスベラトロール：100～500mg/日、SIRT1の直接的な活性化剤\n・NAD+補給：NMN 250mg×1～2回/日、ニコチンアミドリボシド200～300mg/日\n・運動：SIRT1の発現を増加\n・ケトーシス：βヒドロキシ酪酸がSIRT1を活性化\n\n【NAD+の重要性】加齢とともにNAD+は減少。DNA損傷の増加がNAD+を消費し、SIRT1活性とミトコンドリア機能が低下する悪循環。NMNやNRの補給でNAD+を回復。\n\n【サルベージ経路】NAD+の主な供給源。トリプトファンからも合成されるが、サルベージ経路が主。' },
+                { id: 25, cat: '脳', title: '記憶力の改善', content: '【目的】海馬を中心とした記憶システムを保護・改善する。\n\n【海馬に影響する主要因子】\n・ホモシステイン：6以上で海馬萎縮が加速\n・コルチゾール（ストレス）：高コルチゾールは海馬を萎縮させる\n・血糖：インスリン抵抗性は海馬機能を低下\n・睡眠：深い睡眠中に記憶が統合される\n・運動：海馬のBDNFを増加、神経新生を促進\n\n【記憶改善サプリメント】\n・バコパモニエリ：300mg/日、伝統的な記憶改善ハーブ\n・ホスファチジルセリン：100～300mg/日\n・シチコリン（CDP-コリン）：250～500mg/日\n・ライオンズメイン（ヤマブシタケ）：500mg～3g/日\n・イチョウ葉エキス：120～240mg/日\n・DHA：1g/日以上\n\n【記憶の統合】睡眠中（特に徐波睡眠とレム睡眠）に記憶が統合される。8時間の質の良い睡眠が不可欠。\n\n【海馬の神経新生】成人でも海馬では神経新生が起こる。運動と学習が神経新生を促進。' },
+                { id: 26, cat: '3型', title: 'うつ病の治療', content: '【目的】うつ病は認知症のリスク因子であり、認知機能低下の原因にもなる。\n\n【アプローチ】\n・心理療法（認知行動療法等）\n・運動（BDNFの増加、セロトニンの改善）\n・オメガ3脂肪酸（EPA 1g以上/日が抗うつ効果）\n・ビタミンB群（メチル化の改善）\n・ビタミンD（不足は抑うつリスク増加）\n・SAMe（S-アデノシルメチオニン）：200～1600mg/日\n・トリプトファン/5-HTP：セロトニン前駆体\n・セントジョーンズワート：軽～中等度のうつに\n・マグネシウム：400mg/日\n・腸内環境の改善（腸脳相関）\n\n【注意】抗うつ薬（SSRI等）の一部は認知機能に影響する場合がある。薬の変更は必ず医師と相談。抗コリン作用のある抗うつ薬は特に注意。' },
+                { id: 27, cat: '3型', title: '重金属のキレート', content: '【目的】水銀、鉛、ヒ素、カドミウム、アルミニウム等の重金属蓄積を検査し除去する。\n\n【水銀の主な曝露源】\n・大型魚（マグロ、メカジキ等）\n・アマルガム歯科充填物\n・一部のワクチン（チメロサール）\n・環境汚染\n\n【検査方法】\n・血清重金属検査\n・尿中重金属検査（チャレンジテスト）\n・毛髪ミネラル検査（スクリーニング）\n\n【キレーション】\n・DMSA（ジメルカプトコハク酸）\n・DMPS（ジメルカプトプロパンスルホン酸）\n・EDTA（エチレンジアミン四酢酸）\n・天然キレート剤：クロレラ、コリアンダー、修正柑橘ペクチン\n\n【注意事項】\n・専門医の指導が必須\n・キレーション中はミネラル補給が重要（必須ミネラルも排出されるため）\n・アマルガム除去は安全なプロトコルで行う\n・解毒前にグルタチオンレベルを確認' },
+                { id: 28, cat: '3型', title: '生物毒素の治療', content: '【目的】カビ毒（マイコトキシン）等の生物毒素への曝露を特定し、治療する。3型アルツハイマーの主要因子。\n\n【CIRS（慢性炎症反応症候群）】\n・カビ毒への長期曝露で引き起こされる全身性の炎症反応\n・HLA遺伝子検査で感受性を判定\n・多くの医師がカビ毒の影響を認識していないため、自ら知識を持つ必要あり\n\n【マイコトキシンの種類】\n・トリコテセン類\n・アフラトキシン\n・オクラトキシンA\n・グリオトキシン\n\n【検査】\n・尿中マイコトキシン検査\n・HLA-DR遺伝子検査\n・TGF-β1、MMP-9、MSH、VIP等のバイオマーカー\n・ERMI（環境相対カビ指数）：住居のカビ検査\n\n【治療】\n・曝露源の除去（住居のカビ除去・引っ越し）\n・コレスチラミン：マイコトキシンの結合・排出\n・グルタチオン補給\n・VIPスプレー（重症例）\n\n【重要】環境を改善しない限り、治療効果は限定的。住居のカビ検査が最優先。' },
+                { id: 29, cat: '3型', title: '感染症の治療', content: '【目的】慢性感染症による持続的な炎症が脳に与えるダメージを除去する。\n\n【認知機能に影響する感染症】\n・単純ヘルペスウイルス1型（HSV-1）：口唇ヘルペスのウイルスが脳に潜伏しアミロイドβ産生を促進\n・HHV-6（ヒトヘルペスウイルス6型）\n・歯周病菌（P. gingivalis等）：歯周病と認知症の関連が多数報告\n・ボレリア（ライム病）\n・クラミジア肺炎\n・ピロリ菌\n・真菌感染\n\n【歯科衛生の重要性】\n・定期的な歯科検診とクリーニング\n・歯周病の積極的な治療\n・口腔内フローラの改善\n・デンタルフロスの習慣化\n\n【抗ウイルス対策】\n・バラシクロビル等の抗ウイルス薬（ヘルペス）\n・リジン：ヘルペスの再活性化を抑制\n・免疫力の維持（ビタミンC、亜鉛、ビタミンD、エキナセア等）\n\n【検査】HSV-1/2 IgG、HHV-6 IgG、歯周病菌PCR、ライム病抗体等' },
+                { id: 30, cat: '3型', title: '悪影響のある医薬の中止', content: '【目的】認知機能に悪影響を与える薬を特定し、医師と相談の上で代替策を検討する。\n\n【認知機能に悪影響を与える薬】\n・抗コリン薬：最も認知機能にダメージ。抗ヒスタミン薬（第一世代）、過活動膀胱治療薬、一部の抗うつ薬に含まれる\n・ベンゾジアゼピン系（睡眠薬・抗不安薬）：長期使用で認知症リスク増加\n・プロトンポンプ阻害薬（PPI）：長期使用でB12吸収低下、認知症リスク\n・スタチン（一部の人）：脳のコレステロール代謝に影響する場合\n・オピオイド鎮痛薬\n・抗てんかん薬の一部\n\n【重要な注意事項】\n・薬の中止は必ず処方医と相談\n・急な中止は危険な場合がある（特にベンゾジアゼピン系）\n・代替療法を先に確立してから段階的に減薬\n・「抗コリン負荷スコア」で服用薬全体の認知リスクを評価\n\n【Beers基準】高齢者に不適切な薬のリスト。処方薬を見直す際の参考に。' }
+            ];
+
+            /* ===== 日本語対応Q&Aエンジン ===== */
+            var QA = [
+{k:['リコード法','recode','とは','認知症講座'],a:'【リコード法（ReCODE Protocol）とは】\n\nリコード法は、アメリカの神経科学者デール・ブレデセン博士が30年以上の研究をもとに開発した、アルツハイマー型認知症の予防・改善プログラムです。\n\n【従来の治療との違い】\n従来の認知症治療は単一の薬でアミロイドβを除去するアプローチでしたが、ほとんど効果がありませんでした。リコード法は「認知機能低下には36以上の原因がある」という考えに基づき、個人ごとに原因を特定し、複数の因子を同時に改善する画期的な方法です。\n\n【治療の3ステップ】\n1. コグノスコピー（認知機能検査）：血液検査・遺伝子検査等で36以上の潜在因子を調べ原因を特定\n2. 個別化した改善計画：検査結果に基づき、食事・運動・睡眠・サプリメント等の治療プランを作成\n3. 継続的な最適化：定期的な検査で治療効果を確認し調整\n\n【30の治療プロトコル】\n・食事戦略（4項目）：ケトフレックス12/3、オートファジー、MCTオイル、腸内環境\n・ライフスタイル戦略（5項目）：ストレス軽減、睡眠、酸素確保、運動、ミトコンドリア\n・検査値の最適化（8項目）：ホモシステイン、B12、炎症、血糖、ホルモン、亜鉛/銅、ビタミンD、抗酸化\n・脳の戦略（8項目）：脳トレ、アミロイドβ、認知機能、集中力、NGF、シナプス、Sirt1、記憶力\n・3型有害因子対策（5項目）：うつ病、重金属、生物毒素、感染症、有害薬剤\n\n【エビデンス】2025年の無作為化比較試験で、記憶と認知機能の有意な改善が実証されています。\n\n【著書】「アルツハイマー病 真実と終焉」（デール・ブレデセン著）が日本語でも出版されています。'},
+{k:['サブタイプ','6つ','タイプ','型','分類'],a:'【アルツハイマー病の6つのサブタイプ】\n\nブレデセン博士は、アルツハイマー病を原因別に6つのサブタイプに分類しました。患者ごとにどのタイプか（複数の場合もある）を特定し、それに合った治療を行います。\n\n【1型：炎症性（Hot）】\n・慢性的な炎症が原因\n・CRP上昇、A/G比低下、炎症性サイトカイン増加\n・感染症、リーキーガット、歯周病、糖質過多などが引き金\n・対策：抗炎症食、クルクミン、オメガ3、腸内環境改善、感染症治療\n\n【1.5型：糖毒性（Sweet）】\n・1型（炎症）と2型（萎縮）の両方の特徴を持つ\n・インスリン抵抗性と慢性炎症の組み合わせ\n・高血糖、高インスリン、HbA1c上昇\n・対策：ケトフレックス12/3が特に重要、血糖管理、ベルベリン、運動\n\n【2型：萎縮性（Cold）】\n・ホルモン不足、栄養不足、神経栄養因子不足が原因\n・テストステロン低下、エストラジオール低下、ビタミンD不足、BDNF不足\n・対策：ホルモン最適化、栄養補給、運動（BDNF増加）、NGF増加\n\n【3型：毒性（Vile）】\n・毒素（カビ毒、重金属、有機化学物質）への曝露が原因\n・比較的若い年齢で発症することがある\n・HLA遺伝子で感受性が決まる\n・対策：毒素源の特定と除去、キレーション、グルタチオン、コレスチラミン\n\n【4型：血管性（Pale）】\n・脳血管の障害による血流低下が原因\n・動脈硬化、高血圧、心房細動などと関連\n・対策：心血管リスクの管理、運動、オメガ3、血圧管理\n\n【5型：外傷性（Dazed）】\n・頭部外傷（TBI）の繰り返しが原因\n・スポーツ、事故、転倒による脳損傷\n・対策：神経保護、抗炎症、BDNF増加、脳トレーニング\n\n※ 多くの患者は複数のサブタイプの組み合わせです。コグノスコピー検査で自分のタイプを特定することが重要です。'},
+{k:['ケトフレックス','ketoflex','12/3','断食','ファスティング','食事法'],a:'【ケトフレックス12/3 - リコード法の食事プログラム】\n\n【名前の意味】\n・ケト（Keto）：ケトーシス（脂肪代謝）を促進し、脳にケトン体というエネルギーを供給\n・フレックス（Flex）：代謝の柔軟性＋フレキシタリアン（野菜中心だが柔軟に動物性食品も摂る）\n・12/3：最低12時間の断食＋就寝3時間前の絶食\n\n【断食時間の目安】\n・ApoE4遺伝子陰性：12～14時間断食\n・ApoE4遺伝子陽性：14～16時間断食\n・例：夕食を20時に済ませたら、翌朝8時まで食事なし（水・お茶はOK）\n・就寝3時間前は食べない（カロリーのある飲み物も禁止）\n・24時間超の過剰断食は避ける\n\n【積極的に摂る食品】\n・非でんぷん質の野菜をたっぷり（ブロッコリー、カリフラワー、ほうれん草、ケール等）\n・良質な脂質（エクストラバージンオリーブオイル、アボカド、ナッツ類）\n・ベリー類（ブルーベリー、ストロベリー等）\n・天然の魚（サーモン、イワシ、サバ等の小型～中型魚）\n・きのこ類（特にヤマブシタケ/ライオンズメイン）\n・発酵食品（キムチ、ザワークラウト等）\n\n【避けるべき食品】\n・砂糖、人工甘味料\n・精製穀物（白米、白パン、パスタ）\n・グルテン含有食品（小麦、大麦、ライ麦）\n・加工食品、トランス脂肪酸\n・コンベンショナルな乳製品\n・GMO食品\n\n【目標ケトン濃度】1.0～4.0 mmol/L（できれば1.5以上）\n・血清ケトン値で測定（尿検査・呼気検査は信頼性が低い）\n\n【注意事項】\n・マグネシウム、カルシウム、電解質の補給が重要\n・痩せている人（BMI18以下）は炭水化物補給日を組み込む\n・ケトフルー（頭痛、倦怠感等）に注意し水分・ミネラルを十分に\n・野菜をしっかり食べる（便秘予防）\n・2～3日に一度は炭水化物補給日を設ける'},
+{k:['ホモシステイン','homocysteine','下げる','葉酸','メチル'],a:'【ホモシステインを下げる方法】\n\n【なぜ重要か】\nホモシステインは脳に様々なダメージを与えるアミノ酸代謝物です。6 nmol/mL以上だと海馬（記憶の中枢）の萎縮が加速します。一般的な基準値（3.7～13.5）では「正常」でも、リコード法では6以下を目標とします。\n\n【目標値】6 nmol/mL以下\n\n【ステップ1：活性型ビタミンB群の摂取】\n・メチル葉酸（5-MTHF）：0.8mg～最高5mg/日\n  ※ドラッグストアの普通の葉酸は不活性型なので注意！活性型を選ぶこと\n・メチルコバラミン＋アデノシルコバラミン：合計1mg/日\n・P-5-P（活性型ビタミンB6）：20～50mg/日\n→ 3ヶ月後にホモシステインを再検査\n\n【ステップ2：TMG追加】\nステップ1で3ヶ月経っても6以下にならない場合：\n・TMG（トリメチルグリシン）500mgを追加\n→ さらに3ヶ月後に再検査\n\n【ステップ3：メチオニン制限】\nまだ高い場合、メチオニンを多く含む食品の摂取制限：\n・ナッツ、牛肉、羊肉、チーズ、豚肉、魚、大豆、卵、乳製品\n\n【MTHFR遺伝子検査】\nメチル化能力は遺伝子で個人差が大きい。MTHFR遺伝子変異があると葉酸の活性化が困難。遺伝子検査（クリニックまたは民間キット）で確認を推奨。\n\n【検査項目】血清葉酸濃度：目標10～25'},
+{k:['睡眠','眠','寝','不眠','メラトニン','改善したい'],a:'【睡眠を改善する方法 - リコード法】\n\n【なぜ睡眠が重要か】\n・睡眠中にグリンパティック系が活性化し、脳の老廃物（アミロイドβ等）を排出\n・深い睡眠（徐波睡眠）中に記憶が統合される\n・睡眠不足はアミロイドβの蓄積を加速させる\n\n【基本ルール：1日8時間の睡眠確保】\n・アラームなしで自然に起きる\n・できれば真夜中までに就寝\n・就寝3時間前は食べない\n・寝る数時間前に激しい運動をしない（アドレナリンが睡眠を妨害）\n\n【睡眠環境の整備】\n・寝室を可能な限り暗くする（アイマスクも有効）\n・テレビをベッドルームに置かない\n・ブルーライトを夜間避ける（PC使用時はブルーライトフィルター）\n・環境音を静かにし、電子機器の電源を切る\n・適切な室温を保つ\n\n【サプリメント】\n・メラトニン：就寝60～90分前に摂取\n  生理学的用量0.1～0.3mg / 低用量0.5～1mg / 中用量3～5mg / 高用量10mg\n  睡眠誘発だけでなく強力な神経保護効果もある\n・トリプトファン：夜間にネガティブ思考で目覚める場合、500mgを就寝1時間前に\n  改善しない・悪夢が出る場合は5-HTP 100～200mgに切替\n・プロゲステロン：低プロゲステロンで睡眠の質が低下する場合（特に女性）\n・CBDオイル：痛みで眠れない人に有効な場合がある\n・バレリアン＋ホーリーバジル＋パッションフラワー：天然の組み合わせ\n\n【光線療法】朝一番に強い光を最低数十分浴びる（太陽光が最適、困難なら白色LEDライト）\n\n【睡眠記録】Fitbit、OURA Ring、夜間パルスオキシメーター等で睡眠の質を客観的にチェック\n\n【注意】甲状腺機能低下で睡眠が10時間以上になる場合は甲状腺をチェック。夜間コルチゾールが高いと入眠困難になる。'},
+{k:['運動','エクササイズ','プログラム','有酸素','筋トレ','HIIT'],a:'【運動プログラム - リコード法】\n\n【なぜ運動が重要か】\n・神経栄養因子BDNF・IGF-1を増加させ海馬機能を回復\n・脳のネットワーク（デフォルトモードネットワーク）の可塑性を刺激\n・グルコース代謝改善、インスリン抵抗性低下\n・アミロイドβの分解酵素を増加\n・ストレス軽減（コルチゾール低下）\n\n【有酸素運動】\n・頻度：週5～6回\n・時間：1回30～60分\n・週合計：最低150分\n・種類：ウォーキング、ジョギング、水泳、サイクリング等\n・心拍計は必須（心拍ゾーンで管理）\n\n【筋力トレーニング】\n・頻度：週1～2回\n・強度の高いトレーニングが推奨\n・スクワット、デッドリフト等の大筋群を使う種目が効果的\n\n【HIIT（高強度インターバルトレーニング）】\n・VO2peak向上に最も効率的\n・短時間で高い効果\n・心疾患のケアにも有効\n\n【コグニサイズ】\n・運動＋脳トレの組み合わせ\n・歩きながら計算、しりとり等\n・散歩読書クラブ（ウォーキングブッククラブ）は「脳トレ」「身体運動」「社会交流」「モチベーション」の4要素を同時に得られる\n\n【4つのフェーズ】\n1. 初期フェーズ：軽い運動から始める\n2. 基礎体力フェーズ：有酸素運動の基盤を作る\n3. 持久力フェーズ：運動時間と強度を増やす\n4. パフォーマンスフェーズ：HIIT等を組み込む\n\n【座りっぱなし生活の回避】日常生活で動く機会を意識的に増やすことが基本中の基本'},
+{k:['サプリ','サプリメント','一覧','supplement','栄養素','飲む'],a:'【リコード法 主要サプリメント一覧】\n\n【ビタミンB群（活性型）】\n・メチル葉酸（5-MTHF）：0.8～5mg/日\n・メチルコバラミン（活性型B12）：1～5mg/日\n・P-5-P（活性型B6）：20～50mg/日\n・ビタミンB1（チアミン/ベンフォチアミン）：1.5型に重要\n\n【オメガ3脂肪酸】\n・DHA：1g/日\n・EPA：0.5～1g/日\n・冷蔵保存、光を避ける\n\n【抗炎症】\n・クルクミン（ロングビーダ or セラクルミン）：1000mg/日\n・SPMアクティブ：hs-CRP 1以上の場合に1ヶ月\n\n【ミトコンドリア支援】\n・ユビキノール（還元型CoQ10）：50～200mg×2～3回/日\n・PQQ：10～20mg/日\n・NMN：250mg×1～2回/日\n・αリポ酸：100mg～/日\n・アセチル-L-カルニチン：500mg～/日\n\n【抗酸化】\n・NAC（N-アセチルシステイン）：500mg/日（空腹時）\n・ビタミンC：500mg～4g/日\n・ビタミンE（混合トコフェロール）：400～800 IU/日\n・セレン：100～400mcg/日\n・レスベラトロール：ApoE4保有者200mg / 非保有者100mg\n\n【ミネラル】\n・亜鉛（ピコリン酸亜鉛）：25～50mg/日\n・マグネシウムスレオネート：144mg/日（脳への移行性が最高）\n\n【ビタミンD3】：2000～5000 IU/日（目標50～80 ng/mL）\n・ビタミンK2（MK-7）と併用推奨\n\n【睡眠支援】\n・メラトニン：0.5～5mg（就寝60～90分前）\n・トリプトファン：500mg（必要時）\n\n【脳機能】\n・ライオンズメイン（ヤマブシタケ）：500mg～3g/日\n・バコパモニエリ：300mg/日\n・ホスファチジルセリン：100～300mg/日\n・シチコリン（CDP-コリン）：250～500mg/日\n\n【血糖管理】\n・ベルベリン：300～500mg×3回/日\n\n【NAD+関連】\n・ニコチンアミドリボシド：200～300mg/日\n・クレアチン：200～5000mg/日\n\n※ すべてのサプリメントは検査値に基づいて個別に最適化することが重要です。必ず医師に相談してください。'},
+{k:['腸内','腸','プロバイオ','リーキーガット','腸内環境','ボーンブロス','発酵'],a:'【腸内環境の改善 - リコード法】\n\n【なぜ腸が重要か（腸脳相関）】\n・腸内細菌がセロトニン（幸福ホルモン）の約90%を産生\n・腸内細菌がBDNF（脳の神経栄養因子）や短鎖脂肪酸を産生\n・迷走神経を介して腸と脳が直接通信\n・腸管バリアの破綻（リーキーガット）は血液脳関門も弱める\n\n【リーキーガットの原因（除去すべき因子）】\n・ストレス\n・NSAIDs（ロキソニン等）、アスピリン、ステロイド\n・抗生物質\n・アルコール\n・GMO食品（遺伝子組換え食品）\n・殺虫剤、除草剤（グリホサート等）\n・人工甘味料、保存料、着色料\n・砂糖\n・グルテン食品\n\n【腸粘膜の修復：ボーンブロス】\n・骨付き肉（鶏・牛）を長時間（12～24時間）煮込む\n・酢を大さじ1～2加えてミネラルを抽出\n・コラーゲン、グリシン、プロリン等が腸粘膜修復を助ける\n・品質の良い骨を使用（できれば平飼い・グラスフェッド）\n\n【リコード法推奨5種のプロバイオティクス】\n1. ビフィドバクテリウム・ロンガム（ビフィズス菌）\n2. ビフィドバクテリウム・ラクティス（ビフィズス菌）\n3. ラクトバチラス・ブレビス\n4. ラクトバチルス・アシドフィルス\n5. ラクトバチルス・プランタルム\n※ リーキーガットが修復してからプロバイオティクスを開始すること\n\n【発酵食品（シンバイオティクス）】\nキムチ、ザワークラウト、ケフィア、味噌、納豆、コンブチャ等\n\n【検査】マンニトール・ラクツローステスト等で腸管透過性を測定'},
+{k:['ミトコンドリア','CoQ10','ユビキノール','PQQ','NAD','NMN','エネルギー'],a:'【ミトコンドリア機能の最適化 - リコード法プロトコル9】\n\n【なぜ重要か】\nミトコンドリアは細胞のエネルギー工場。脳は体の2%の重量で20%のエネルギーを消費するため、ミトコンドリア機能低下は認知機能に直結する。\n\n【ユビキノール（還元型CoQ10）】\n・用量：50～200mg×2～3回/日、毎食後（脂質性の食事後が理想）\n・ミトコンドリアの電子伝達系に必須\n・パーキンソニズム、心不全では高用量が効果的\n\n【PQQ（ピロロキノリンキノン）】\n・用量：10～20mg×1～2錠/日、朝食後または活動前\n・ミトコンドリアの新生（バイオジェネシス）を促進\n・海馬神経細胞の回復作用\n・運動不足の患者に特に効果的\n\n【NAD+関連サプリメント】\n・NMN（ニコチンアミドモノヌクレオチド）：250mg×1～2回/日\n・ニコチンアミドリボシド（NR）：200～300mg/日\n・レスベラトロール：150～500mg/日（NAD+利用を促進するSIRT1を活性化）\n・NAD+は加齢とともに減少し、DNA修復能力とミトコンドリア機能が低下\n\n【αリポ酸】100mg～/日。ミトコンドリアのエネルギー代謝に重要な補酵素。\n\n【NAC（N-アセチルシステイン）】500mg/日、空腹時。グルタチオン（最強の抗酸化物質）の前駆体。\n\n【アセチル-L-カルニチン】500mg～/日。脂肪酸をミトコンドリアに運搬。\n\n【ビタミンB1】1.5型に特に重要。糖質→エネルギー変換の補酵素。\n\n【ビタミンC】500mg～4g/日。\n\n【セレン】目標110～150ng/ml、100～400mcg/日。ブラジルナッツ数粒/日。\n\n【クレアチン】200～5000mg/日。\n\n【ミトコンドリアを活性化する生活習慣】\n・運動（特にHIIT）\n・間欠的断食\n・寒冷暴露\n・質の良い睡眠'},
+{k:['重金属','キレート','水銀','鉛','デトックス','解毒','アルミニウム'],a:'【重金属デトックス - リコード法プロトコル27】\n\n【なぜ重要か】\n重金属（水銀、鉛、ヒ素、カドミウム、アルミニウム等）は神経毒性があり、アルツハイマー病（特に3型）の原因となる。\n\n【水銀の主な曝露源】\n・大型魚（マグロ、メカジキ、キンメダイ等）\n・アマルガム（銀色の）歯科充填物\n・一部のワクチン（チメロサール）\n・環境汚染（石炭燃焼等）\n\n【鉛の曝露源】古い塗料、水道管、一部の陶磁器、化粧品\n\n【アルミニウムの曝露源】制汗剤、調理器具、一部の薬（制酸剤等）\n\n【検査方法】\n・血清重金属検査：急性曝露の評価\n・尿中重金属検査（チャレンジテスト/プロボケーションテスト）：体内蓄積量の評価\n・毛髪ミネラル検査：長期的な曝露のスクリーニング\n・RBC（赤血球）中の重金属：細胞内蓄積の評価\n\n【キレーション療法】\n・DMSA（ジメルカプトコハク酸）：水銀・鉛に有効\n・DMPS（ジメルカプトプロパンスルホン酸）：水銀に特に有効\n・EDTA（エチレンジアミン四酢酸）：鉛に有効\n\n【天然キレート剤】\n・クロレラ：重金属結合能がある緑藻\n・コリアンダー（パクチー）：脳内の重金属動員\n・修正柑橘ペクチン：消化管での重金属結合\n・NAC/グルタチオン：解毒を支援\n\n【重要な注意事項】\n・専門医の指導が絶対に必須\n・キレーション中は必須ミネラル（亜鉛、マグネシウム等）も排出されるため補給が重要\n・アマルガム除去は「安全な除去プロトコル」で行う（適当に削ると水銀蒸気を吸引）\n・解毒前にグルタチオンレベルを確認し十分に高めておく'},
+{k:['血糖','インスリン','HbA1c','糖尿','ベルベリン','糖質'],a:'【血糖値の改善 - リコード法プロトコル13】\n\n【なぜ重要か】\nアルツハイマー病は「3型糖尿病」とも呼ばれます。インスリン抵抗性は脳のエネルギー不足を招き、アミロイドβの蓄積を加速します。\n\n【目標検査値】\n・空腹時インスリン：5未満（4.9～5.2が理想）\n・空腹時血糖：90以下（79～86理想、92～96まずまず）\n・HbA1c：4.5～5.2\n\n【重要な注意】\n・空腹時血糖は低すぎても認知機能低下リスク（70～72mg/dl以下にならないよう注意）\n・病院の糖尿病検査で「正常」でもリコード法の目標に届いていないことが多い\n\n【計測器具】フリースタイルリブレ推奨（針を使わず連続血糖測定可能）\n\n【改善方法】\n1. ケトフレックス12/3（食事管理）：糖質制限＋良質な脂質\n2. オートファジー・ケトン体の活性化：12～16時間の断食\n3. 運動：インスリン感受性を直接改善する最も効果的な方法\n\n【ベルベリン】\n・用量：300～500mg×3回/日（分割投与で徐々に増やす）\n・中国・アーユルヴェーダ医学で3000年以上使用されてきた天然物質\n・血糖降下作用はメトホルミンに匹敵するという研究あり\n・抗菌、抗寄生虫、下痢緩和作用もある\n\n【注意事項】\n・脂質補充の不足した糖質制限は危険（十分な良質脂質を摂る）\n・糖尿病薬との併用では低血糖に注意\n・ケトン体を脳のエネルギー源として活用することで、糖質依存から脱却'},
+{k:['アミロイド','アミロイドβ','Aβ','老人斑','プラーク'],a:'【アミロイドβを減らす - リコード法プロトコル19】\n\n【アミロイドβとは】\n脳に蓄積するタンパク質で、アルツハイマー病の特徴的な病変。しかしリコード法では「アミロイドβは脳の防御反応の一部」と考えます。\n\n【リコード法の革新的な考え方】\n従来の治療：アミロイドβを薬で除去 → ほぼ失敗\nリコード法：アミロイドβが蓄積する根本原因を除去 → 脳が自然にアミロイドを減らす\n\n【アミロイドβが増える原因】\n・慢性炎症（感染症、リーキーガット、歯周病等）\n・栄養不足（ビタミン、ミネラル、ホルモン等）\n・毒素への曝露（重金属、カビ毒等）\n・インスリン抵抗性\n・睡眠不足（排出が減る）\n\n【アミロイドβ排出を促進する方法】\n・質の良い睡眠（特に徐波睡眠）：グリンパティック系が活性化し老廃物を排出。睡眠は脳の「お掃除タイム」\n・運動：アミロイドβ分解酵素（ネプリライシン等）を増加\n・オートファジー：断食による細胞内の「自食作用」でゴミを処理\n・炎症の軽減：NF-κB阻害でアミロイド産生シグナルを抑制\n・クルクミン：アミロイドβの凝集を直接阻害\n・DHA：アミロイドβの除去を促進\n・運動＋睡眠＋断食の三本柱が最も重要\n\n【重要な概念】\nアミロイドβを「悪者」として単純に除去するのではなく、なぜ脳がアミロイドを作る必要があったのか（炎症？感染？毒素？）を突き止め、その原因を取り除くことが根本的な解決策です。'},
+{k:['ビタミンD','ビタミンd','日光','sunshine','骨'],a:'【ビタミンD - リコード法プロトコル16】\n\n【なぜ重要か】\n・ビタミンD受容体は海馬を含む脳全体に存在\n・脳の免疫調節、神経保護、アミロイドβクリアランスに関与\n・低ビタミンDは認知症リスクの有意な増加と関連\n・日本人の多くがビタミンD不足（特に冬季）\n\n【目標値】50～80 ng/mL\n※一般的な基準値（30以上）ではリコード法の目標に届かない\n\n【検査】25-ヒドロキシビタミンD（25(OH)D）を定期的に測定\n\n【補給方法】\n・日光浴：腕や足に15～30分/日（季節・緯度により調整）\n  日本の冬（特に北日本）では日光だけでは不十分\n・ビタミンD3サプリメント：2000～5000 IU/日\n  検査値に基づいて用量を調整\n  ビタミンD2ではなくD3を選ぶこと\n\n【重要な併用】\n・ビタミンK2（MK-7）：100～200mcg/日\n  ビタミンDと一緒に摂ることでカルシウムが骨に適切に取り込まれる\n  K2なしでビタミンDを大量摂取すると動脈石灰化のリスクがある\n・マグネシウム：ビタミンDの代謝にマグネシウムが必要\n\n【注意事項】\n・脂溶性ビタミンのため過剰症にも注意。100 ng/mL以上は避ける\n・サプリメントは食事（脂質を含む）と一緒に摂ると吸収が良い\n・定期的な血液検査で数値をモニタリング'},
+{k:['カビ','CIRS','マイコトキシン','毒素','生物毒素','カビ毒'],a:'【カビ毒・CIRS - リコード法プロトコル28（3型アルツハイマーの主要因子）】\n\n【CIRS（慢性炎症反応症候群）とは】\nカビ毒（マイコトキシン）等の生物毒素への長期曝露で引き起こされる全身性の炎症反応。3型アルツハイマー病の主要な原因。\n\n【重要な事実】\n・人口の約25%がHLA遺伝子の関係でカビ毒を体内から排出しにくい\n・多くの医師がカビ毒の影響を認識していない\n・水害や結露の多い住居は特にリスクが高い\n\n【マイコトキシンの種類】\n・トリコテセン類（黒カビ等）\n・アフラトキシン（食品のカビ）\n・オクラトキシンA（穀物、コーヒー）\n・グリオトキシン（アスペルギルス等）\n\n【検査】\n・尿中マイコトキシン検査：体内のカビ毒量を直接測定\n・HLA-DR遺伝子検査：カビ毒感受性の遺伝的リスクを判定\n・バイオマーカー：TGF-β1、MMP-9、MSH、VIP、C4a等\n・ERMI（環境相対カビ指数）：住居のカビレベルを数値化\n\n【治療ステップ】\n1. 曝露源の除去が最優先！（住居のカビ除去、場合によっては引っ越し）\n   環境を改善しない限り、治療効果は限定的\n2. コレスチラミン：消化管でマイコトキシンを結合・排出する薬\n3. グルタチオン補給：解毒能力を高める\n4. 活性炭：追加的なマイコトキシン吸着\n5. VIPスプレー（重症例）：最終段階の治療\n\n【住居のチェックポイント】\n・水漏れ、結露の痕跡\n・浴室、キッチン、地下室のカビ\n・エアコンのフィルターとダクト\n・洗濯機の内部\n・ERMI検査で数値化することが推奨'},
+{k:['脳トレ','脳トレーニング','認知トレ','BrainHQ','パズル','学習'],a:'【脳トレーニング - リコード法プロトコル18】\n\n【なぜ重要か】\n脳は「使わないと衰える」臓器。新しい刺激と挑戦が神経可塑性を維持し、認知予備能を高めます。\n\n【推奨される脳トレーニング】\n・BrainHQ（ブレインHQ）：科学的に検証されたオンライン認知トレーニング。リコード法で最も推奨\n・新しい言語の学習：脳の複数領域を同時に活性化\n・楽器の演奏：運動＋聴覚＋記憶の統合\n・パズル、クロスワード、数独：論理的思考の訓練\n・読書（特に散歩読書クラブ形式）：読む＋歩く＋話すの三重効果\n・新しい料理のレシピに挑戦：段取り力＋感覚の統合\n・手芸、絵画、書道：細かい運動＋創造性\n\n【デュアルタスク訓練（コグニサイズ）】\n・歩きながら計算する\n・歩きながらしりとりする\n・運動しながら暗記する\n・運動＋認知の同時実行が特に効果的\n\n【環境エンリッチメント】\n「遊び」がもたらす認知機能増強作用：\n・感覚的刺激（新しい場所、音、匂い）\n・社会的刺激（人との交流）\n・運動刺激（体を動かす遊び）\nこの3つの組み合わせが最も効果的\n\n【重要なポイント】\n・テレビ視聴等の受動的活動より能動的な活動\n・難易度が適度に高いチャレンジングな活動\n・社会的交流を伴う活動が特に効果的\n・「新しいこと」への挑戦が重要（慣れた作業は効果が減る）\n・毎日少しずつでも継続することが大切'},
+{k:['ホルモン','甲状腺','エストロゲン','テストステロン','プロゲステロン','DHEA','コルチゾール','更年期'],a:'【ホルモンバランスの最適化 - リコード法プロトコル14】\n\n【なぜ重要か】\nホルモンは脳の神経保護、シナプス維持、記憶、炎症制御に深く関与。ホルモン低下は認知機能低下の直接的な原因（特に2型アルツハイマー）。\n\n【甲状腺ホルモン】\n・検査項目：TSH、Free T3、Free T4、リバースT3\n・甲状腺機能低下は認知機能低下、うつ、疲労と直結\n・甲状腺機能低下で睡眠が10時間以上になることも\n・潜在性甲状腺機能低下症（TSHがやや高め）にも注意\n\n【エストラジオール（エストロゲン）】\n・女性の更年期における急激な低下が認知症リスクを高める\n・神経保護作用、シナプス可塑性の維持に重要\n・早期の閉経は認知症リスク増加\n\n【テストステロン】\n・男性：低テストステロンは認知機能低下、うつ、筋力低下と関連\n・女性にも少量必要：エネルギー、気分、認知に影響\n\n【プロゲステロン】\n・神経保護作用がある\n・睡眠の質に大きく影響（低プロゲステロン→睡眠障害）\n・GABA受容体に作用し、自然な鎮静効果\n\n【DHEA-S】\n・副腎機能の指標\n・加齢とともに低下\n・免疫機能、気分、認知に影響\n\n【コルチゾール】\n・朝高く夜低いのが正常パターン\n・慢性ストレスでHPA軸が乱れ、パターンが崩れる\n・高コルチゾールは海馬を直接萎縮させる\n・夜間の高コルチゾールは不眠の原因\n\n【プレグネノロン】\n・すべてのステロイドホルモンの前駆体（「ホルモンの母」）\n・記憶力に直接関与するという研究がある\n\n【重要な注意事項】\n・ホルモン補充療法は必ず医師の指導のもとで\n・バイオアイデンティカルホルモン（天然型ホルモン）が推奨される\n・合成ホルモンはリスクが高い場合がある\n・定期的な検査でモニタリングが必須'}
+            ];
+
+            function getAnswer(question) {
+                if (!question || typeof question !== 'string') return '質問を入力してください。';
+                var q = question.toLowerCase().trim();
+                if (q.length < 1) return 'もう少し具体的に質問してください。';
+
+                /* --- ステップ1: QAデータベースからスコアマッチ --- */
+                var bestScore = 0;
+                var bestIdx = -1;
+                for (var i = 0; i < QA.length; i++) {
+                    var score = 0;
+                    for (var j = 0; j < QA[i].k.length; j++) {
+                        var kw = QA[i].k[j].toLowerCase();
+                        if (q.indexOf(kw) !== -1) score += kw.length * 3;
+                        if (kw.indexOf(q) !== -1) score += q.length * 2;
+                    }
+                    if (score > bestScore) { bestScore = score; bestIdx = i; }
+                }
+                if (bestIdx >= 0 && bestScore >= 2) return QA[bestIdx].a;
+
+                /* --- ステップ2: プロトコルの内容を2文字N-gramで検索 --- */
+                var results = [];
+                var ngrams = [];
+                for (var c = 0; c < q.length - 1; c++) {
+                    var ng = q.substring(c, c + 2);
+                    if (!/^[\s？?！!。、,.　]+$/.test(ng)) ngrams.push(ng);
+                }
+                for (var pi = 0; pi < PROTOCOLS.length; pi++) {
+                    var p = PROTOCOLS[pi];
+                    var hay = (p.title + ' ' + p.content + ' ' + p.cat).toLowerCase();
+                    var ps = 0;
+                    for (var ni = 0; ni < ngrams.length; ni++) {
+                        if (hay.indexOf(ngrams[ni]) !== -1) ps++;
+                    }
+                    if (p.title.toLowerCase().indexOf(q) !== -1) ps += 50;
+                    if (ps > 0) results.push({ p: p, s: ps });
+                }
+                results.sort(function(a, b) { return b.s - a.s; });
+                if (results.length > 0 && results[0].s >= 2) {
+                    var top = results.slice(0, Math.min(2, results.length));
+                    var out = '';
+                    for (var ti = 0; ti < top.length; ti++) {
+                        if (ti > 0) out += '\n\n━━━━━━━━━━\n\n';
+                        out += '【' + top[ti].p.id + '. ' + top[ti].p.title + '（' + top[ti].p.cat + '）】\n\n' + top[ti].p.content;
+                    }
+                    out += '\n\n※ リコード法の実施は医師の指導のもとで行うことを推奨します。';
+                    return out;
+                }
+
+                return '申し訳ありません。該当する情報が見つかりませんでした。\n\n以下のキーワードでお試しください：\nリコード法、サブタイプ、ケトフレックス、ホモシステイン、睡眠、運動、サプリメント、腸内環境、ミトコンドリア、重金属、血糖値、アミロイド、ビタミンD、カビ毒、脳トレーニング、ホルモン\n\nまた「30のプロトコル」タブで全項目を閲覧できます。';
+            }
+
+            function showAnswer(question, answerText) {
+                var home = document.getElementById('qaHome');
+                var view = document.getElementById('qaAnswerView');
+                var qLabel = document.getElementById('qaAnswerQuestion');
+                var content = document.getElementById('qaAnswerContent');
+                if (!home || !view || !content) return;
+
+                qLabel.textContent = '「' + question + '」の回答';
+                content.innerHTML = formatAnswer(answerText);
+                home.style.display = 'none';
+                view.classList.add('visible');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function showHome() {
+                var home = document.getElementById('qaHome');
+                var view = document.getElementById('qaAnswerView');
+                if (!home || !view) return;
+                view.classList.remove('visible');
+                home.style.display = '';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function formatAnswer(text) {
+                if (!text) return '';
+                // XSS対策
+                var d = document.createElement('div');
+                d.textContent = text;
+                var safe = d.innerHTML;
+                // 見出し【...】を太字に
+                safe = safe.replace(/【([^】]+)】/g, '<strong style="color:#1a5f4a">【$1】</strong>');
+                // ・で始まる行をリスト風に
+                safe = safe.replace(/^・(.+)$/gm, '<span style="display:block;padding-left:1em;text-indent:-1em;">・$1</span>');
+                // 数字リスト
+                safe = safe.replace(/^(\d+)\.\s(.+)$/gm, '<span style="display:block;padding-left:1.2em;text-indent:-1.2em;">$1. $2</span>');
+                // 区切り線
+                safe = safe.replace(/━+/g, '<hr style="border:none;border-top:1px solid #d4cfbf;margin:0.6rem 0;">');
+                // 改行
+                safe = safe.replace(/\n/g, '<br>');
+                // ※注意書き
+                safe = safe.replace(/※(.+?)(?:<br>|$)/g, '<div style="margin-top:0.5rem;padding:0.4rem 0.6rem;background:#f0ede5;border-radius:4px;font-size:0.9em;">※$1</div>');
+                return safe;
+            }
+
+            function sendMessage() {
+                var input = document.getElementById('qaSearchInput');
+                if (!input) return;
+                var text = input.value.trim();
+                if (!text) return;
+                var answer = getAnswer(text);
+                showAnswer(text, answer);
+                input.value = '';
+            }
+
+            function initTabs() {
+                var tabs = document.querySelectorAll('.nav-tab');
+                var panels = document.querySelectorAll('.panel');
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].addEventListener('click', function() {
+                        var targetId = 'panel-' + (this.getAttribute('data-panel') || '');
+                        for (var j = 0; j < tabs.length; j++) tabs[j].classList.remove('active');
+                        for (var k = 0; k < panels.length; k++) {
+                            panels[k].classList.remove('active');
+                            if (panels[k].id === targetId) panels[k].classList.add('active');
+                        }
+                        this.classList.add('active');
+                    });
+                }
+            }
+
+            function initProtocols() {
+                var grid = document.getElementById('protocolGrid');
+                var detail = document.getElementById('protocolDetail');
+                var search = document.getElementById('protocolSearch');
+                if (!grid || !detail) return;
+
+                function renderGrid(filter) {
+                    grid.innerHTML = '';
+                    var list = PROTOCOLS;
+                    if (filter) {
+                        var f = filter.toLowerCase();
+                        list = PROTOCOLS.filter(function(p) {
+                            return p.title.toLowerCase().indexOf(f) !== -1 || p.cat.toLowerCase().indexOf(f) !== -1;
+                        });
+                    }
+                    for (var i = 0; i < list.length; i++) {
+                        var p = list[i];
+                        var el = document.createElement('div');
+                        el.className = 'protocol-item';
+                        el.innerHTML = '<div class="num">' + p.id + '. ' + p.cat + '</div><div class="title">' + escapeHtml(p.title) + '</div>';
+                        el.addEventListener('click', (function(proto) {
+                            return function() {
+                                var formatted = formatAnswer(proto.content);
+                                detail.innerHTML = '<button class="back-btn">一覧に戻る</button><div class="card"><h2>' + escapeHtml(proto.title) + '（' + proto.cat + '）</h2><div style="color:#5a5a5a;font-size:0.95rem;line-height:1.7">' + formatted + '</div></div>';
+                                detail.classList.add('visible');
+                                grid.style.display = 'none';
+                                detail.querySelector('.back-btn').addEventListener('click', function() {
+                                    detail.classList.remove('visible');
+                                    detail.innerHTML = '';
+                                    grid.style.display = '';
+                                });
+                            };
+                        })(p));
+                        grid.appendChild(el);
+                    }
+                }
+
+                function escapeHtml(s) {
+                    if (!s) return '';
+                    var d = document.createElement('div');
+                    d.textContent = s;
+                    return d.innerHTML;
+                }
+
+                if (search) {
+                    search.addEventListener('input', function() { renderGrid(this.value); });
+                }
+                renderGrid();
+            }
+
+            function initQuickQuestions() {
+                var quickQs = document.querySelectorAll('.quick-q');
+                for (var i = 0; i < quickQs.length; i++) {
+                    quickQs[i].addEventListener('click', function() {
+                        var text = this.textContent;
+                        var answer = getAnswer(text);
+                        showAnswer(text, answer);
+                    });
+                }
+            }
+
+            function init() {
+                var searchBtn = document.getElementById('qaSearchBtn');
+                var searchInput = document.getElementById('qaSearchInput');
+                var backBtn = document.getElementById('qaBackBtn');
+                if (searchBtn) searchBtn.addEventListener('click', sendMessage);
+                if (searchInput) {
+                    searchInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') sendMessage();
+                    });
+                }
+                if (backBtn) backBtn.addEventListener('click', showHome);
+                initTabs();
+                initProtocols();
+                initQuickQuestions();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+    </div><!-- /app-wrapper -->
+
+    <script>
+    (function() {
+        'use strict';
+        // ===== パスワード認証（SHA-256ハッシュ方式） =====
+        var APP_PASSWORD_HASH = '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab';
+
+        var overlay  = document.getElementById('lockOverlay');
+        var wrapper  = document.getElementById('appWrapper');
+        var input    = document.getElementById('lockInput');
+        var btn      = document.getElementById('lockBtn');
+        var errMsg   = document.getElementById('lockError');
+
+        // SHA-256ハッシュ関数
+        function sha256(str) {
+            var encoder = new TextEncoder();
+            var data = encoder.encode(str);
+            return crypto.subtle.digest('SHA-256', data).then(function(hashBuffer) {
+                var hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+            });
+        }
+
+        // セッション中はログイン状態を保持
+        if (sessionStorage.getItem('recode_unlocked') === 'yes') {
+            unlock();
+        }
+
+        function unlock() {
+            overlay.classList.add('hidden');
+            wrapper.classList.add('unlocked');
+            sessionStorage.setItem('recode_unlocked', 'yes');
+        }
+
+        function tryLogin() {
+            var val = input.value.trim();
+            if (!val) { errMsg.textContent = 'パスワードを入力してください'; return; }
+            btn.disabled = true;
+            sha256(val).then(function(hashed) {
+                if (hashed === APP_PASSWORD_HASH) {
+                    errMsg.textContent = '';
+                    unlock();
+                } else {
+                    errMsg.textContent = 'パスワードが違います。もう一度お試しください。';
+                    input.value = '';
+                    input.focus();
+                }
+                btn.disabled = false;
+            });
+        }
+
+        btn.addEventListener('click', tryLogin);
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') tryLogin();
+        });
+        // ページ表示時にフォーカス
+        input.focus();
+    })();
+    </script>
+</body>
+</html>
