@@ -1040,24 +1040,15 @@
     <script>
     (function() {
         'use strict';
-        // ===== パスワード認証（SHA-256ハッシュ方式） =====
-        var APP_PASSWORD_HASH = '3cb25825a619415e255ae83eb0cd9c26684de310fb3c377ac289362e043affe7';
+        // ===== パスワード認証 =====
+        // ★ パスワードを変更したい場合は下の '3636' を書き換えてください ★
+        var APP_PASSWORD = '3636';
 
         var overlay  = document.getElementById('lockOverlay');
         var wrapper  = document.getElementById('appWrapper');
         var input    = document.getElementById('lockInput');
         var btn      = document.getElementById('lockBtn');
         var errMsg   = document.getElementById('lockError');
-
-        // SHA-256ハッシュ関数
-        function sha256(str) {
-            var encoder = new TextEncoder();
-            var data = encoder.encode(str);
-            return crypto.subtle.digest('SHA-256', data).then(function(hashBuffer) {
-                var hashArray = Array.from(new Uint8Array(hashBuffer));
-                return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-            });
-        }
 
         // セッション中はログイン状態を保持
         if (sessionStorage.getItem('recode_unlocked') === 'yes') {
@@ -1073,18 +1064,14 @@
         function tryLogin() {
             var val = input.value.trim();
             if (!val) { errMsg.textContent = 'パスワードを入力してください'; return; }
-            btn.disabled = true;
-            sha256(val).then(function(hashed) {
-                if (hashed === APP_PASSWORD_HASH) {
-                    errMsg.textContent = '';
-                    unlock();
-                } else {
-                    errMsg.textContent = 'パスワードが違います。もう一度お試しください。';
-                    input.value = '';
-                    input.focus();
-                }
-                btn.disabled = false;
-            });
+            if (val === APP_PASSWORD) {
+                errMsg.textContent = '';
+                unlock();
+            } else {
+                errMsg.textContent = 'パスワードが違います。もう一度お試しください。';
+                input.value = '';
+                input.focus();
+            }
         }
 
         btn.addEventListener('click', tryLogin);
